@@ -1,0 +1,101 @@
+.custom_slider .slick-list {
+    overflow: visible;
+}
+.custom_slider .slick-slide {
+    padding-right: 1rem;
+    opacity: 1;
+    transition: all .24s ease-in-out;
+}
+.custom_slider .slick-slide .card_container {
+    box-shadow: 14px 14px 14px 0px #15090629;
+    border-radius: 8px;
+}
+.custom_slider .previous-slide {
+    opacity: 0 !important;
+}
+.custom_slider .slick-prev,
+.custom_slider .slick-next{
+    position: absolute;
+    top: unset;
+    bottom: calc(100% - 5rem);
+}
+.custom_slider .slick-prev { left: calc(50% - 1rem); transform: translateX(-50%); }
+.custom_slider .slick-next { right: unset; left: calc(50% - 1rem); transform: translateX(calc(50% + .8rem)) }
+.custom_slider.slick-slider {position: unset;}
+.custom_slider .slick-prev,
+.custom_slider .slick-next {
+    width: fit-content;
+    height: fit-content;
+}
+.custom_slider .slick-prev::before ,
+.custom_slider .slick-next::before {
+    font-size: 2rem;
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    box-shadow: 0px 2px 8px 0px var(--primary);
+    color: var(--secondary);
+    border-radius: 50%;
+}
+.custom_slider .slick-next::before {
+    content: "\f134";
+}
+.custom_slider .slick-prev::before {
+    content:"\f12a";
+}
+/* - - - -  */
+:root {
+    --fullHeightOfImg: 0;
+}
+.card_container {
+    /* height: 400px; */
+    position: relative;
+    overflow: hidden;
+}
+.card_container img {
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    /* animation: autoScroll 3s linear  infinite alternate; */
+ }
+ .card_container:hover .card_content{
+    opacity: 1;
+    
+ }
+ .card_container:hover .links {
+    transform: scale(1) rotate(0);
+ }
+ .card_content {
+    opacity: 0;
+    
+    position: absolute;
+    inset: 0;
+    background-color: #2216136c;
+    color: var(--secondary);
+    transition: opacity .3s ease-in-out;
+ }
+ .card_content .links {
+    transform: scale(.4) rotate(180deg);
+    transition: transform .3s ease-in-out;
+ }
+ .card_content .proj_link {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--complimentary2);
+    color: var(--secondary);
+    box-shadow: var(--shadow_sm);
+    transform: scale(1);
+    transition: all .3s ease-in-out;
+ }
+ .card_content .proj_link:hover {
+    box-shadow: var(--shadow_sm);
+    transform: scale(.96);
+    box-shadow: none;
+ }
+.card_content .middle_links {
+    gap: 88px;
+}
+.card_content .middle_links .proj_link  {
+    background-color: var(--complimentary);
+}

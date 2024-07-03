@@ -1,0 +1,142 @@
+.brand::after {
+    content: 'Gamar Suleymanova';
+}
+@media only screen and (max-width: 678px) {
+    .brand::after {
+        content: 'GS';
+    }
+}
+@media only screen and (min-width: 992px) {
+    .nav_link.active,
+    .nav_link:hover {
+        color: var(--complimentary);
+    }
+
+    .nav_link.active::after {
+        content: '';
+        background-color: var(--complimentary);
+        width: .8rem;
+        height: .8rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 96%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+@media only screen and (max-width: 992px) {
+    .nav_link.active {
+        background-color: var(--complimentary);
+        color: var(--secondary);
+        border-radius: 24px;
+    }
+}
+
+.contact-links .c_link:hover i {
+    transform: translateY(calc(-1 * var(--text_small))) scale(.99);
+}
+.contact-links .c_link span {
+    transition-delay: .15s;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom;
+}
+.contact-links .c_link:hover span {
+    opacity: 1;
+    transform: scale(.88);
+}
+.nav_onScroll::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--secondary);
+    z-index: -1;
+    opacity: 88%;
+    border-radius: inherit;
+}
+.nav_onScroll {
+    /* position: fixed !important; */
+    padding-inline: 2rem !important;
+    top: 0;
+    width: 96% !important;
+    left: calc(4% - var(--scrollbar-width)) !important;
+    right: calc(4% - var(--scrollbar-width)) !important;
+    /* margin-top: 1rem; */
+    box-shadow: var(--shadow_sm);
+    border-radius: 40px;
+    transform: translateY(1rem);
+    z-index: 1;
+}
+.navbar:has(.nav_onScroll) {
+    position: sticky;
+    top: 0;
+}
+
+@media only screen and (max-width: 992px) {
+    .nav_onScroll {
+        left: calc(2% - var(--scrollbar-width));
+        right: calc(2% - var(--scrollbar-width));
+    }
+}
+@media only screen and (max-width: 992px) {
+    .nav_links {
+        height: 36px;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition-delay: .1s;
+        transform: translateY(0);
+    }
+    .menu_btn.active i {
+        transform: rotate(-90deg);
+    }
+    .menu_btn::before {
+        /* content: 'Menu'; */
+        font-weight: 600;
+        color: var(--primary);
+        margin-right: 1rem;
+        transition: all .3s ease-in-out;
+        opacity: 0;
+    }
+    .menu_btn.active::before {
+        opacity: 1;
+    }
+    .menu_btn.active + .nav_links {
+        height: calc(1rem + 88px);
+        /* height: calc(1rem + 124px); when there is a contact link */
+        background-color: var(--secondary);
+        box-shadow: var(--shadow_sm);
+        border-radius: 8px;
+        padding-inline: .4rem;
+        padding-block: .8rem;
+        opacity: 1;
+        transform: translateY(1.6rem);
+    }
+    .menu_btn + .nav_links .nav_link {
+        width: 100%;
+        visibility: hidden;
+        z-index: 0;
+    }
+    /* .menu_btn + .nav_links .nav_link.active {
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        visibility: visible;
+    } */
+    .menu_btn.active + .nav_links .nav_link.active {
+        position: relative;
+        top: 0;
+        z-index: 2;
+        visibility: visible;
+    }
+    .menu_btn.active + .nav_links .nav_link {
+        visibility: visible;
+    }
+}
+@media only screen and (min-width: 400px) {
+    .menu_btn::before {
+        content: 'Menu';
+    }
+}

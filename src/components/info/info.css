@@ -1,0 +1,152 @@
+:root {
+    --w_gear1: 2.8rem;
+    --w_gear2: 2.3rem;
+}
+
+/* experience */
+.p_iconParent,
+.light_bulb i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: var(--w_gear1);
+}
+
+.experience {
+    overflow: hidden;
+    animation: typing 1.6s ease-in-out infinite;
+}
+
+.experience::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: var(--w_gear1);
+    background-color: var(--primary);
+    animation: showHide .3s ease-in-out infinite;
+}
+
+@keyframes showHide {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes typing {
+    0% { width: 0%; }
+    40% { width: calc(var(--w_gear1) / 3); }
+    70% { width: calc(var(--w_gear1) / 1.5); }
+    100% { width: var(--w_gear1); }
+}
+
+/* education */
+.grad_cap {
+    animation: throwTheCap 3s ease-out 2s infinite;
+
+}
+
+@keyframes throwTheCap {
+    0% {  transform: translateY(10%) rotateY(0deg) rotateX(0deg); }
+    15% { transform: translateY(-20%) rotateY(0deg) rotateX(0deg); }
+    25% { transform: translateY(-25%) rotateY(-30deg) rotateX(-30deg); }
+    40% { transform: translateY(-30%) rotateY(0deg) rotateX(180deg); }
+    46% { transform: translateY(-40%) rotateY(0deg) rotateX(270deg); }
+    60% { transform: translateY(-40%) rotateY(0deg) rotateX(0deg); }
+    100% { transform: translateY(10%) rotateY(0deg) rotateX(0deg); }
+}
+
+/* hard skills */
+.gears {
+    height: 100%;
+    width: calc(var(--w_gear1) + var(--w_gear2));
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.gears>i {
+    animation: rolling 4.5s linear infinite;
+    position: absolute;
+}
+
+.gears i:last-child {
+    right: 9%;
+    bottom: 29%;
+    font-size: var(--w_gear2);
+}
+
+.gears i:first-child {
+    left: 0;
+    animation-direction: reverse;
+    animation-duration: 3s;
+}
+
+@keyframes rolling {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg); }
+}
+
+/* soft skills */
+.light_bulb i {
+    animation: rotateBulb 3s .1s linear infinite;
+}
+
+.light_bulb .light {
+    position: absolute;
+    bottom: calc(100% - var(--w_gear1) / 5);
+    right: calc(100% - var(--w_gear1) / 5);
+}
+
+.light_bulb .light path {
+    animation: lighting 3s linear infinite;
+}
+
+@keyframes lighting {
+    0% {
+        transform: scale(0);
+        transform-origin: bottom;
+    }
+    50% { transform: scale(1); }
+    100% {
+        transform: scale(0);
+        transform-origin: bottom;
+    }
+}
+
+@keyframes rotateBulb {
+    0% { transform: rotate(-4deg) scale(.8); }
+    50% { transform: rotate(-16deg) scale(1); }
+    100% { transform: rotate(-4deg) scale(.8); }
+}
+
+/* check list style */
+.check_list li::after {
+    content: "\f270";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-weight: inherit;
+    font-size: var(--check_icon_size);
+    position: absolute;
+    right: calc(100% + .4rem);
+    top: -0.3rem;
+}
+
+.check_list li {
+    position: relative;
+    margin-bottom: var(--mb_check_li);
+}
+
+.check_list li .child_motion {
+    height: calc(88% + var(--check_icon_size) - var(--mb_check_li));
+    width: 1px;
+    background-color: var(--primary);
+    margin-top: calc(1rem + 10px);
+    position: absolute;
+    left: -1.2rem;
+    top: 1%;
+}
+
+.check_list .motion_div:last-child li .child_motion {
+    height: 0px;
+}
