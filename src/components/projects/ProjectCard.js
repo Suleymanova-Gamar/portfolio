@@ -69,7 +69,7 @@ export default function ProjectCard({
             </motion.img>
             <div
                 className="card_content flex_center">
-                <div className="links flex_center flex-column">
+                <div className="links flex_center flex-column gap-2">
                     <a className="proj_link flex_center text_small" rel="noreferrer" href={liveLink} target="_blank">Go Live</a>
                     <div className="d-flex middle_links">
                         <Button className="proj_link flex_center text_small" onClick={onOpen}>Info</Button>
@@ -88,17 +88,17 @@ export default function ProjectCard({
                                         <div className="d-flex gap-2">
                                             {info.tools.map((tool, index) => (
                                                 <FontAwesomeIcon
-                                                className="f_h4 rounded_sm fa_icon_shadow"
-                                                bounce
-                                                key={index}
-                                                icon={tool.toolIcon}
-                                                style={{
-                                                    color: tool.iconColor,
-                                                    '--fa-animation-delay': `${index}s`,
-                                                    '--fa-animation-iteration-count': 1
-                                                }}
-                                                title={tool.toolName}
-                                            />
+                                                    className="f_h4 rounded_sm fa_icon_shadow"
+                                                    bounce
+                                                    key={index}
+                                                    icon={tool.toolIcon}
+                                                    style={{
+                                                        color: tool.iconColor,
+                                                        '--fa-animation-delay': `${index}s`,
+                                                        '--fa-animation-iteration-count': 1
+                                                    }}
+                                                    title={tool.toolName}
+                                                />
                                             ))}
                                         </div>
                                     </div>
@@ -106,9 +106,9 @@ export default function ProjectCard({
                             </ModalContent>
                         </Modal>
                         {/* <a className="proj_link flex_center text_small" rel="noreferrer" href="https://www.framer.com/motion/examples/" target="_blank">Info</a> */}
-                        <a className="proj_link flex_center text_small" rel="noreferrer" href={codeLink} target="_blank">Codes</a>
+                        {codeLink && <a className="proj_link flex_center text_small" rel="noreferrer" href={codeLink} target="_blank">Codes</a>}
                     </div>
-                    <a className="proj_link flex_center text_small" rel="noreferrer" href={designLink} target="_blank">Design</a>
+                    {designLink&& <a className="proj_link flex_center text_small" rel="noreferrer" href={designLink} target="_blank">Design</a>}
                 </div>
             </div>
 

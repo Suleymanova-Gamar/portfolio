@@ -3,8 +3,9 @@ import './main.css';
 import model  from '../../assets/images/dev-model.png';
 import React from 'react';
 import { useNavContext } from '../../context/NavContext';
-
+import { useProjectContext } from '../../context/ProjectContext'
 export default function Header() {
+    const { fullHeightOfTopImg } = useProjectContext();
     const {
         headerRef,
         handleClick,
@@ -26,7 +27,7 @@ export default function Header() {
                     </div>
                     <div className='col-12'>
                         <a className='btn_navigate p-3 p-md-4 arrowEffect_onHover smaller_onHover position-relative transition btn_navigate_horLines btn_navigate_verLines d-flex flex-column flex-sm-row text-center text-lg-start gap-2 gap-md-4 justify-content-center align-items-center no_underline color_primary f_h4 px-4 mt-4'
-                        href='#Projects' onClick={handleClick}>
+                        href='#Projects' onClick={(e) => handleClick(e, fullHeightOfTopImg)}>
                             <span>Transforming Ideas into Interactive Reality</span>
                             <svg className='arrow_down h-100' width="40" viewBox="0 0 52 67" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path className='first' fillRule="evenodd" clipRule="evenodd" d="M5.35095 27.8836C5.98555 27.067 7.01445 27.067 7.64905 27.8836L26 51.497L44.351 27.8836C44.9856 27.067 46.0144 27.067 46.649 27.8836C47.2836 28.7001 47.2836 30.0241 46.649 30.8407L27.149 55.9326C26.5144 56.7492 25.4856 56.7492 24.851 55.9326L5.35095 30.8407C4.71635 30.0241 4.71635 28.7001 5.35095 27.8836Z" fill="#150906" stroke="#150906" strokeLinecap="round" strokeLinejoin="round" />

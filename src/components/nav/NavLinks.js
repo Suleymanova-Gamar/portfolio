@@ -3,7 +3,7 @@ import { useNavContext } from "../../context/NavContext";
 import { useAnimationContext } from "../../context/TypeAnimationContext";
 import ContactLinks from "./ContactLinks";
 import './navbar.css';
-
+import { useProjectContext } from "../../context/ProjectContext";
 export default function Nav() {
     const {
         activeLink,
@@ -17,6 +17,7 @@ export default function Nav() {
         handleClick,
         handleScroll
     } = useNavContext();
+    const { fullHeightOfTopImg } = useProjectContext();
     const { setTriggerAnimation } = useAnimationContext();
 
     React.useEffect(() => {
@@ -50,7 +51,7 @@ export default function Nav() {
         function getDistanceFromTop(element) {
             const rect = element.getBoundingClientRect();
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            return rect.top + scrollTop - navParentRef.current.clientHeight - 24;
+            return rect.top + scrollTop - navParentRef.current.clientHeight - 24 + fullHeightOfTopImg;
         }
         const newSections = allSections.map((s) => ({
             id: s.getAttribute('id'),
@@ -74,7 +75,8 @@ export default function Nav() {
                     <div>
                         {/* eslint-disable-next-line */}
                         <a className="brand no_underline color_primary f_kaushan"
-                            href="#Header" onClick={handleClick} title="Gamar Suleymanova"></a>
+                            href="#Header" onClick={(e) => handleClick(e, fullHeightOfTopImg)} title="Gamar Suleymanova"></a>
+                            {/* fullHeightOfTopImg */}
                     </div>
                     <ContactLinks />
                     <NavLinks />
@@ -83,6 +85,7 @@ export default function Nav() {
     );
 }
 function NavLinks() {
+    const { fullHeightOfTopImg } = useProjectContext();
     const {
         activeLink,
         isMenuActive,
@@ -104,7 +107,7 @@ function NavLinks() {
                         key={index}
                         name={link}
                         activeLink={activeLink}
-                        handleClick={handleClick}
+                        handleClick={(e) => handleClick(e, fullHeightOfTopImg)}
                     />
                 })}
             </div>
@@ -112,8 +115,9 @@ function NavLinks() {
     );
 }
 function InnerLink({ name, activeLink, handleClick }) {
+    const { fullHeightOfTopImg } = useProjectContext();
     return (
         <a className={`nav_link w_fit transition p_lg_relative px-4 py-1 no_underline text_medium ${(activeLink === name) ? 'active ' : ''}`}
-            href={`#${name}`} onClick={handleClick}>{name} </a>
+            href={`#${name}`} onClick={(e) => handleClick(e, fullHeightOfTopImg)}>{name} </a>
     );
 }

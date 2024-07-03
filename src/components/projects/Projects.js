@@ -10,12 +10,27 @@ import { useProjectContext } from '../../context/ProjectContext';
 import { useMediaQuery } from 'react-responsive';
 
 export default function Projects() {
-    const { activeSlideIndex, setActiveSlideIndex  } = useProjectContext();
+    const { activeSlideIndex, setActiveSlideIndex,
+            setFullHeightOfTopImg,
+            projectTopImgRef
+     } = useProjectContext();
     const sliderRef = useRef(null);
     const isMobile = useMediaQuery({ query: '(min-width: 0px)' });
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
     const isDesktop = useMediaQuery({ query: '(min-width: 992px)' });
-
+    React.useEffect(() => {
+        const img = projectTopImgRef.current;
+        function handleImageLoad() {
+            setFullHeightOfTopImg(img.clientHeight);
+        }
+        if (img.complete) {
+            handleImageLoad();
+        } else {
+            img.addEventListener('load', handleImageLoad);
+            return () => img.removeEventListener('load', handleImageLoad);
+        }
+        // eslint-disable-next-line
+    }, []);
     const settings = {
         // autoplay: true,
         pauseOnHover: true,
@@ -46,7 +61,11 @@ export default function Projects() {
 
     return (
         <section className="bg_projects pb-5 clip-path overflow-hidden" id="Projects">
-            <img className='w-100' src={projectTop} alt='clip path to top'/>
+            <img
+                className='w-100'
+                src={projectTop}
+                alt='clip path to top'
+                ref={projectTopImgRef}/>
             <div className="container-lg position-relative">
                 <div className="row">
                     <div className='col-12'>

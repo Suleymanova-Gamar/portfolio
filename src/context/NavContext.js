@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useRef } from 'react';
 export const NavContext = createContext();
-
 export const NavProvider = ({ children }) => {
     // states
     const [halfScrolled, setHalfScrolled] = React.useState(false);
@@ -19,19 +18,20 @@ export const NavProvider = ({ children }) => {
         if (isMenuActive) setMenuActive(false);
         else setMenuActive(true);
     }
-    const handleClick = (e) => {
+    const handleClick = (e, fullHeightOfTopImg) => {
         e.preventDefault();
         const id = e.target.getAttribute('href').slice(1);
         const theSection = document.getElementById(id);
+        const theBtnIsHome = e.target.getAttribute('href') === '#Header';
         const offset = navParentRef.current.clientHeight; // Offset value for scrolling 100px above the section
-        const scrollPosition = window.scrollY + theSection.getClientRects()[0].top - offset - 24;
+        const scrollPosition = (theBtnIsHome)? 0: window.scrollY + theSection.getClientRects()[0].top - offset - 24 + fullHeightOfTopImg;
         // setActiveLink(id);
         window.scrollTo({
             top: scrollPosition,
             behavior: 'smooth',
         });
     }
-    const handleScroll = () => {
+    const handleScroll = (e) => {
         // const currentScreenHeight = window.innerHeight;
         const passedHalfOfScreen = navRef.current.clientHeight <= window.scrollY;
         setHalfScrolled(passedHalfOfScreen);

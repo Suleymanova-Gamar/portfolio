@@ -18,7 +18,7 @@ import {
 import SkillList from "./SkillList";
 import { TypeAnimation } from 'react-type-animation';
 import { useAnimationContext } from "../../context/TypeAnimationContext";
-
+import { useProjectContext } from "../../context/ProjectContext";
 export default function Info() {
     const { triggerAnimation } = useAnimationContext();
 
@@ -30,9 +30,10 @@ export default function Info() {
     }), []);
     const animeDuration = 0.8;
     const isTablet = useMediaQuery({ query: '(max-width: 992px)' });
+    const { fullHeightOfTopImg } = useProjectContext();
 
     return (
-        <section className="container-lg" id="Info">
+        <section className="container-lg" id="Info" style={{ paddingTop: `${fullHeightOfTopImg}px` }}>
             <div className="row">
                 <div className="col-12">
                     <h4 className="f_h4 header_main header_main_dark position-relative mb-5">My Profile</h4>
