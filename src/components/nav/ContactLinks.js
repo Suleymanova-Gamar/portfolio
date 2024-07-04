@@ -12,7 +12,7 @@ export default function ContactLinks() {
     }, {
         name: 'LinkedIn',
         icon: 'linkedin',
-        href: 'mailto:suleymanovagamar03@gmail.com'
+        href: 'https://www.linkedin.com/in/gamar-suleymanova/'
     }], []);
     return (
         <div className="contact-links d-flex gap-1 align-items-center">
