@@ -4,6 +4,8 @@ import { useAnimationContext } from "../../context/TypeAnimationContext";
 import ContactLinks from "./ContactLinks";
 import './navbar.css';
 import { useProjectContext } from "../../context/ProjectContext";
+import { useMediaQuery } from 'react-responsive';
+
 export default function Nav() {
     const {
         activeLink,
@@ -88,8 +90,6 @@ function NavLinks() {
     const { fullHeightOfTopImg } = useProjectContext();
     const {
         activeLink,
-        isMenuActive,
-        handleMenuBtn,
         navLinkContainerRef,
         handleClick,
     } = useNavContext();
@@ -97,11 +97,14 @@ function NavLinks() {
         'Info', 'Projects',
         // 'Contact'
     ], []);
+    const isDesktop = useMediaQuery({ query: '(min-width: 992px)' });
     return (
-        <div className='links_container d-flex position-relative'>
-            <button onClick={handleMenuBtn} className={`menu_btn ${(isMenuActive === true) ? 'active ' : ''} d-lg-none transition btn_default color_primary flex_center`}><i className="bi bi-list f_h5 transition"></i></button>
-            <div className="nav_links transition align-items-end d-flex justify-content-lg-end flex-column flex-lg-row gap-2 gap-lg-0 px-2 px-lg-0"
-                ref={navLinkContainerRef}>
+        <div className='links_container dropdown d-flex position-relative'>
+            <button className="menu_btn d-lg-none transition btn_default color_primary flex_center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i className="bi bi-list f_h5 transition"></i>
+            </button>
+            <div className={`${(isDesktop === false) ? 'dropdown-menu ' : ''} nav_links transition align-items-end justify-content-lg-end flex-column flex-lg-row gap-2 gap-lg-0 px-2 px-lg-0`}
+            ref={navLinkContainerRef}>
                 {nav_link_content.map((link, index) => {
                     return <InnerLink
                         key={index}

@@ -81,16 +81,13 @@
 @media only screen and (max-width: 992px) {
     .nav_links {
         height: 36px;
+        width: calc(100vw - var(--bs-gutter-x));
         position: absolute;
         top: 100%;
         right: 0;
         overflow: hidden;
-        opacity: 0;
         transition-delay: .1s;
         transform: translateY(0);
-    }
-    .menu_btn.active i {
-        transform: rotate(-90deg);
     }
     .menu_btn::before {
         /* content: 'Menu'; */
@@ -98,45 +95,44 @@
         color: var(--primary);
         margin-right: 1rem;
         transition: all .3s ease-in-out;
-        opacity: 0;
-    }
-    .menu_btn.active::before {
-        opacity: 1;
-    }
-    .menu_btn.active + .nav_links {
-        height: calc(1rem + 88px);
-        /* height: calc(1rem + 124px); when there is a contact link */
-        background-color: var(--secondary);
-        box-shadow: var(--shadow_sm);
-        border-radius: 8px;
-        padding-inline: .4rem;
-        padding-block: .8rem;
-        opacity: 1;
-        transform: translateY(1.6rem);
     }
     .menu_btn + .nav_links .nav_link {
         width: 100%;
-        visibility: hidden;
-        z-index: 0;
-    }
-    /* .menu_btn + .nav_links .nav_link.active {
-        position: absolute;
-        top: 0;
-        z-index: 2;
-        visibility: visible;
-    } */
-    .menu_btn.active + .nav_links .nav_link.active {
-        position: relative;
-        top: 0;
-        z-index: 2;
-        visibility: visible;
-    }
-    .menu_btn.active + .nav_links .nav_link {
-        visibility: visible;
     }
 }
 @media only screen and (min-width: 400px) {
     .menu_btn::before {
         content: 'Menu';
+    }
+}
+.dropdown-menu.show  {
+    display: flex !important;
+}
+.dropdown-menu[data-bs-popper] {
+    right: 0;
+    left: unset !important;
+    height: calc(1rem + 88px);
+    background-color: var(--secondary);
+    box-shadow: var(--shadow_sm);
+    border-radius: 8px;
+    padding-inline: .4rem;
+    padding-block: .8rem;
+    transform: translateY(1.6rem);
+}
+.nav_onScroll .dropdown-menu[data-bs-popper].nav_links {
+    width: calc(100vw - var(--bs-gutter-x)* 2 - 2rem);
+}
+@media only screen and (min-width:576px) {
+    .nav_onScroll .dropdown-menu[data-bs-popper].nav_links {
+        width: calc(100vw - var(--bs-gutter-x)* 2 - 3rem);
+    }
+}
+.menu_btn[aria-expanded="true"] i {
+    transform: rotate(90deg);
+}
+@media only screen and (min-width: 992px) {
+    .dropdown-menu  {
+        display: flex !important;
+        position: relative !important;
     }
 }

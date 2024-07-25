@@ -99,3 +99,12 @@
 .card_content .middle_links .proj_link  {
     background-color: var(--complimentary);
 }
+.childSvgSize svg {
+    height: 24px;
+    max-width: 32px;
+}
+@keyframes bounce {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}

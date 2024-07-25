@@ -11,18 +11,20 @@ import {
     useDisclosure,
     Button,
 } from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import './projects.css';
+import { ReactSVG } from 'react-svg';
 import '@fortawesome/free-brands-svg-icons';
+
 export default function ProjectCard({
-                                src,
-                                isActive,
-                                alt,
-                                liveLink,
-                                info,
-                                codeLink,
-                                designLink
-    }) {
+    src,
+    isActive,
+    alt,
+    liveLink,
+    info,
+    codeLink,
+    designLink,
+    links
+}) {
     const cardParentRef = useRef(null);
     const [fullHeightOfImg, setFullHeightOfImg] = React.useState(0);
     const vh = window.innerHeight / 100;
@@ -57,7 +59,15 @@ export default function ProjectCard({
                 alt={alt}
                 ref={projectImgRef}
                 initial={{ top: 0 }}
-                animate={isActive ? (inView ? { top: [0, -fullHeightOfImg, 0] } : { top: 0 }) : { top: 0 }}
+                animate={
+                    // (fullHeightOfImg + cardHeight) respresents actual full height of the image,
+                    // because we set hegiht of the image like this:
+                    // setFullHeightOfImg(img.clientHeight - cardHeight);
+                    ((fullHeightOfImg + cardHeight) >= (cardHeight * 1.2)) ?
+                        (isActive ?
+                            (inView ? { top: [0, -fullHeightOfImg, 0] } : { top: 0 })
+                            : { top: 0 })
+                        : ''}
                 transition={{
                     delay: 1,
                     duration: inView && isActive ? fullHeightOfImg / 100 : 0, // Only animate if inView and isActive
@@ -70,7 +80,14 @@ export default function ProjectCard({
             <div
                 className="card_content flex_center">
                 <div className="links flex_center flex-column gap-2">
-                    <a className="proj_link flex_center text_small" rel="noreferrer" href={liveLink} target="_blank">Go Live</a>
+                    <a
+                        className={`${liveLink ? '' : 'opacity-75'} proj_link flex_center text_small`}
+                        rel="noreferrer" href={liveLink ? liveLink : '#nodlink'}
+                        target={`${liveLink ? '_blank' : ''}`}
+                        title={`live link`}
+                    >
+                        Go Live
+                    </a>
                     <div className="d-flex middle_links">
                         <Button className="proj_link flex_center text_small" onClick={onOpen}>Info</Button>
                         <Modal isOpen={isOpen} onClose={onClose}>
@@ -87,31 +104,44 @@ export default function ProjectCard({
                                         <h6 className="f_h6 color_primary me-3 mb-0">Tools:</h6>
                                         <div className="d-flex gap-2">
                                             {info.tools.map((tool, index) => (
-                                                <FontAwesomeIcon
-                                                    className="f_h4 rounded_sm fa_icon_shadow"
-                                                    bounce
-                                                    key={index}
-                                                    icon={tool.toolIcon}
-                                                    style={{
-                                                        color: tool.iconColor,
-                                                        '--fa-animation-delay': `${index}s`,
-                                                        '--fa-animation-iteration-count': 1
-                                                    }}
+                                                <div
                                                     title={tool.toolName}
-                                                />
+                                                    key={index}
+                                                >
+                                                    <ReactSVG
+                                                        src={tool.toolIcon}
+                                                        className='childSvgSize'
+                                                        style={{
+                                                            fill: tool.iconColor,
+                                                            animation: `bounce .4s linear ${index}s 1`
+                                                        }}
+                                                    />
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>
-                        {/* <a className="proj_link flex_center text_small" rel="noreferrer" href="https://www.framer.com/motion/examples/" target="_blank">Info</a> */}
-                        {codeLink && <a className="proj_link flex_center text_small" rel="noreferrer" href={codeLink} target="_blank">Codes</a>}
+                        <a
+                            className={`${codeLink ? '' : 'opacity-75'} proj_link flex_center text_small`}
+                            rel="noreferrer" href={codeLink ? codeLink : '#nodlink'}
+                            target={`${codeLink ? '_blank' : ''}`}
+                            title={`${codeLink ? '' : "I don't have permission to share the codes"}`}
+                        >
+                            Codes
+                        </a>
                     </div>
-                    {designLink&& <a className="proj_link flex_center text_small" rel="noreferrer" href={designLink} target="_blank">Design</a>}
+                    <a
+                        className={`${designLink ? '' : 'opacity-75'} proj_link flex_center text_small`}
+                        rel="noreferrer" href={designLink ? designLink : '#nodlink'}
+                        target={`${designLink ? '_blank' : ''}`}
+                        title={`${designLink ? '' : 'Designed by my former co-worker'}`}
+                    >
+                        Design
+                    </a>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -96,6 +96,7 @@ export default function Projects() {
                                     info={card.info}
                                     codeLink={card.codesLink}
                                     designLink={card.designLink}
+                                    links={card.links}
                                     isActive={parseInt(activeSlideIndex) === parseInt(index)}
                                 />)
                             })}
