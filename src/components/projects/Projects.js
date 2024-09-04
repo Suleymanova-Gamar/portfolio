@@ -69,7 +69,7 @@ export default function Projects() {
             <div className="container-lg position-relative">
                 <div className="row">
                     <div className='col-12'>
-                        <h4 className="f_h4 header_main header_main_light position-relative mb-5 color_secondary">My Profile</h4>
+                        <h4 className="f_h4 header_main header_main_light position-relative mb-5 color_secondary">My Projects</h4>
                     </div>
                 </div>
                 <div className='row'>
