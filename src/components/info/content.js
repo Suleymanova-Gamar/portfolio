@@ -1,9 +1,9 @@
 const hardSkills = [
     'HTML, CSS , JS (ES6+, DOM manipulation)',
     'Web accessibility and SEO',
-    'React, Node.js, Chakra UI, Formik, Yup',
-    'Testing: Jest, React Testing Library',
-    'CI/CD pipelines, OOP, .NET Core, C#',
+    'React, Redux, Chakra UI, Formik, Yup',
+    'Unit Testing: Jest, React Testing Library',
+    'CI/CD pipelines, RESTfull API with Node.js or .NET Core',
     'Responsive web design using Figma',
     'Version Control with Git',
     'Languages: English, Russian, Turkish, Azerbaijani'
